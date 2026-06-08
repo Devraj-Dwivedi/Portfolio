@@ -1,5 +1,0 @@
-name = "Portfolio"
-compatibility_date = "2026-06-08"
-
-[assets]
-directory = "."
