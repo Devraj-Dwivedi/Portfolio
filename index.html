@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />>
 <meta name="theme-color" content="#020510" />
 <meta name="color-scheme" content="dark" />
 <meta name="description" content="Devraj Dwivedi — Full-Stack Developer & Creative Technologist. Building digital experiences that actually matter." />
@@ -1627,7 +1627,153 @@ const projects = [
     else if (e.key === 'ArrowLeft') prev();
   });
 })();
+ if (window.innerWidth < 1024) {
+        var popup = document.getElementById('mobile-popup');
+        popup.style.display = 'flex';
+        document.getElementById('desktop-link').href = window.location.href + '?view=desktop';
+    }
 
+</script>
+<!-- Desktop Site Popup - Matches Site Theme -->
+<div id="desktop-popup" style="
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(2, 5, 16, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.4s cubic-bezier(0.2, 0.7, 0.2, 1);
+">
+  <style>
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes slideUp {
+      from { 
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    #desktop-popup-content {
+      animation: slideUp 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
+    }
+  </style>
+  
+  <div id="desktop-popup-content" style="
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(125, 249, 194, 0.25);
+    border-radius: 28px;
+    padding: 48px 40px;
+    text-align: center;
+    max-width: 380px;
+    backdrop-filter: blur(28px);
+    -webkit-backdrop-filter: blur(28px);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 20px 60px -20px rgba(0, 0, 0, 0.6);
+  ">
+    <h2 style="
+      font-family: 'Syne', ui-serif, Georgia, serif;
+      font-weight: 800;
+      font-size: 28px;
+      letter-spacing: -0.025em;
+      margin: 0 0 16px;
+      background: linear-gradient(120deg, #7DF9C2 0%, #A78BFA 45%, #F472B6 80%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    ">Continue in Desktop Site for an Immersive Experience</h2>
+    
+    <p style="
+      font-family: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
+      font-size: 14px;
+      color: rgba(232, 234, 255, 0.45);
+      margin: 0 0 32px;
+      line-height: 1.6;
+    ">This portfolio is optimized for desktop viewing. You'll get the full experience with animations, interactive elements, and beautiful visuals on a larger screen.</p>
+    
+    <div style="display: flex; gap: 12px; flex-direction: column;">
+      <button id="desktop-popup-close" style="
+        padding: 14px 24px;
+        border-radius: 999px;
+        font-family: 'JetBrains Mono', ui-monospace, monospace;
+        font-size: 12px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        background: linear-gradient(120deg, #7DF9C2, #A78BFA);
+        color: #031018;
+        font-weight: 500;
+        border: none;
+        cursor: pointer;
+        transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.3s;
+        box-shadow: 0 10px 40px -10px rgba(125, 249, 194, 0.5);
+      " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 16px 50px -10px rgba(125, 249, 194, 0.7)'" onmouseout="this.style.transform='none'; this.style.boxShadow='0 10px 40px -10px rgba(125, 249, 194, 0.5)'">
+        Got It
+      </button>
+      
+      <button id="desktop-popup-continue" style="
+        padding: 14px 24px;
+        border-radius: 999px;
+        font-family: 'JetBrains Mono', ui-monospace, monospace;
+        font-size: 12px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: #E8EAFF;
+        cursor: pointer;
+        transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1), border-color 0.3s, background 0.3s;
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+      " onmouseover="this.style.borderColor='rgba(125, 249, 194, 0.35)'; this.style.background='rgba(255, 255, 255, 0.09)'; this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='rgba(255, 255, 255, 0.1)'; this.style.background='rgba(255, 255, 255, 0.05)'; this.style.transform='none'">
+        Continue Anyway
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Show desktop popup on mobile devices
+  function checkIfMobileAndShowPopup() {
+    // Detect if device is mobile
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 768;
+    
+    // Only show popup on first visit
+    const hasSeenPopup = sessionStorage.getItem('desktopPopupSeen');
+    
+    if (isMobile && !hasSeenPopup) {
+      document.getElementById('desktop-popup').style.display = 'flex';
+      sessionStorage.setItem('desktopPopupSeen', 'true');
+    }
+  }
+  
+  // Close popup handlers
+  document.getElementById('desktop-popup-close').addEventListener('click', function() {
+    document.getElementById('desktop-popup').style.display = 'none';
+  });
+  
+  document.getElementById('desktop-popup-continue').addEventListener('click', function() {
+    document.getElementById('desktop-popup').style.display = 'none';
+  });
+  
+  // Close popup when clicking outside
+  document.getElementById('desktop-popup').addEventListener('click', function(e) {
+    if (e.target === this) {
+      this.style.display = 'none';
+    }
+  });
+  
+  // Show popup when page loads
+  window.addEventListener('load', checkIfMobileAndShowPopup);
 </script>
 </body>
 </html>
